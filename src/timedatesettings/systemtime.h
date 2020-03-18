@@ -59,7 +59,7 @@ Q_SIGNALS:
 public Q_SLOTS:
 
 protected:
-    SystemTimePrivate *d_ptr;
+//    SystemTimePrivate *d_ptr;
 
     Q_DISABLE_COPY(SystemTime)
     Q_DECLARE_PRIVATE(SystemTime)

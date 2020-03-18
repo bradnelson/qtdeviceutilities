@@ -41,7 +41,7 @@
 //
 
 #include "systemtime.h"
-#include "timedated_interface.h"
+//#include "timedated_interface.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -52,41 +52,33 @@ public:
     SystemTimePrivate(SystemTime *qq)
         :q_ptr(qq)
     {
-        m_timeInterface = new OrgFreedesktopTimedate1Interface(QStringLiteral("org.freedesktop.timedate1"),
-                                                               QStringLiteral("/org/freedesktop/timedate1"),
-                                                               QDBusConnection::systemBus(), qq);
+//        m_timeInterface = new OrgFreedesktopTimedate1Interface(QStringLiteral("org.freedesktop.timedate1"),
+//                                                               QStringLiteral("/org/freedesktop/timedate1"),
+//                                                               QDBusConnection::systemBus(), qq);
 
     }
 
     bool ntp() const {
-        if (m_timeInterface)
-            return m_timeInterface->nTP();
         return false;
     }
 
     void setNtp(bool val) {
-        if (m_timeInterface)
-            m_timeInterface->SetNTP(val, true);
+        Q_UNUSED(val)
     }
 
     QString timeZone() const {
-        if (m_timeInterface)
-            return m_timeInterface->timezone();
         return QString();
     }
 
     void setTimeZone(const QString& aTimeZone) {
-        if (m_timeInterface)
-            m_timeInterface->SetTimezone(aTimeZone, true);
+        Q_UNUSED(aTimeZone)
     }
 
     void setTime(qlonglong usecsSinceEpoch) {
-        if (m_timeInterface)
-            m_timeInterface->SetTime(usecsSinceEpoch, false, true);
+        Q_UNUSED(usecsSinceEpoch)
     }
 
 private:
-    OrgFreedesktopTimedate1Interface *m_timeInterface;
     SystemTime *q_ptr;
 };
 

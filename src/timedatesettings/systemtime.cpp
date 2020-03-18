@@ -28,6 +28,7 @@
 ****************************************************************************/
 #include "systemtime.h"
 #include "systemtime_p.h"
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 
@@ -78,7 +79,6 @@ QT_BEGIN_NAMESPACE
 
 SystemTime::SystemTime(QObject *parent) :
     QObject(parent)
-    ,d_ptr(new SystemTimePrivate(this))
 {
     QTimer *secTimer = new QTimer(this);
     connect(secTimer, &QTimer::timeout, this, &SystemTime::timeChanged);
@@ -89,34 +89,27 @@ SystemTime::SystemTime(QObject *parent) :
 
 bool SystemTime::ntp() const
 {
-    const Q_D(SystemTime);
-    return d->ntp();
+    return false;
 }
 
 void SystemTime::setNtp(const bool aNtp)
 {
-   Q_D(SystemTime);
-   d->setNtp(aNtp);
+    Q_UNUSED(aNtp)
 }
 
 void SystemTime::setTime(const QDateTime& aTime)
 {
-    Q_D(SystemTime);
-    d->setTime(aTime.toMSecsSinceEpoch()*1000);
-    emit timeChanged();
+    Q_UNUSED(aTime)
 }
 
 QString SystemTime::timeZone() const
 {
-    Q_D(const SystemTime);
-    return d->timeZone();
+    return QString::fromUtf8("No Timezone Set");
 }
 
 void SystemTime::setTimeZone(const QString& aTimeZone)
 {
-    Q_D(SystemTime);
-    d->setTimeZone(aTimeZone);
-    emit timeZoneChanged();
+    Q_UNUSED(aTimeZone)
 }
 
 QDateTime SystemTime::time() const

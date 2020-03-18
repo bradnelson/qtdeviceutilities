@@ -3,12 +3,12 @@ load(qt_build_config)
 TARGET = QtTimeDateSettings
 VERSION = 1.0
 
-QT = core dbus
+QT = core
 
 MODULE = timedatesettings
 load(qt_module)
 
-DBUS_INTERFACES = timedated.xml
+#DBUS_INTERFACES = timedated.xml
 
 SOURCES += systemtime.cpp \
     timezonemodel.cpp \
